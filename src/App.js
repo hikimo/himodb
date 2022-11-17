@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Global, css } from "@emotion/react";
+import { AppRouter } from "./routes";
+import { colors } from "./assets";
+import { MylistContext } from "./context";
 
-function App() {
+const globalStyles = css`
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: ${colors.body}
+  }
+  @keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+`;
+
+export default function App() {
+  const [mylistValue, setMylistValue] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MylistContext.Provider value={{ mylist: mylistValue, setMylist: (item) => setMylistValue(item) }}>
+      <BrowserRouter>
+        <Global styles={globalStyles} />
+        <AppRouter />
+      </BrowserRouter>
+    </MylistContext.Provider>
   );
 }
-
-export default App;
