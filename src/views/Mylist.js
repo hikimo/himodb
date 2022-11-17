@@ -66,7 +66,7 @@ function Movies({loading, movies}) {
           movies.map(item => (
             <CardMovie
               key={item.imdbID}
-              // poster={item.Poster}
+              poster={item.Poster}
               title={item.Title}
               year={item.Year}
               type={item.Type}
