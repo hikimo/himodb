@@ -39,7 +39,7 @@ export function Detail() {
       const temp = mylist;
       for (let i = 0; i < mylist.length; i++) {
         if (mylist[i].imdbID === id) {
-          delete temp[i];
+          temp.splice(i, 1);
           setListed(false);
           break;
         }
